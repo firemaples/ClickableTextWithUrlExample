@@ -1,6 +1,7 @@
 package com.example.accessibilitybug
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.text.ClickableText
@@ -38,11 +39,13 @@ private fun LinkClickableText(
         modifier = Modifier,
         text = annotatedString,
         onClick = { offset ->
+            Log.i("ClickableText", "OnClick called.")
             annotatedString.getUrlAnnotations(
                 start = offset,
                 end = offset
             ).firstOrNull()?.let { annotation ->
                 uriHandler.openUri(annotation.item.url)
+                Log.i("ClickableText", "Url opened.")
             }
         }
     )
