@@ -4,14 +4,15 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.ExperimentalTextApi
-import androidx.compose.ui.text.UrlAnnotation
-import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.*
+import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalTextApi::class)
@@ -21,7 +22,9 @@ class MainActivity : ComponentActivity() {
             LinkClickableText(annotatedString = buildAnnotatedString {
                 append("Not a link, but ")
                 pushUrlAnnotation(UrlAnnotation(url = "https://www.google.com"))
-                append("this is a link.")
+                withStyle(style = SpanStyle(Color.Blue)) {
+                    append("this is a link that when clicked should open Google.com.")
+                }
                 pop()
                 append(" And here's another string without a link.")
             })
@@ -36,8 +39,9 @@ private fun LinkClickableText(
 ) {
     val uriHandler = LocalUriHandler.current
     ClickableText(
-        modifier = Modifier,
+        modifier = Modifier.padding(8.dp),
         text = annotatedString,
+        style = MaterialTheme.typography.body1,
         onClick = { offset ->
             Log.i("ClickableText", "OnClick called.")
             annotatedString.getUrlAnnotations(
