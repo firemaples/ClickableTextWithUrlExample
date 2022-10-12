@@ -19,3 +19,7 @@ navigated to the browser.
 Actual:
 * The onClick for the ClickableText is never called. Note that it is not the browser navigation that is broken. 
 This can be confirmed using the logs.
+
+Screen Recording:
+https://user-images.githubusercontent.com/6220053/195464922-86f367fc-a97f-4fd5-9db6-75d8b1433df0.mp4
+
