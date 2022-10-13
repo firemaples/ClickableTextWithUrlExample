@@ -1,5 +1,5 @@
 # ClickableTextWithUrlExample
-Example app demonstrating a bug where URLAnnotation is read correctly by Talkback, but the on click is not called.
+Example app demonstrating the reported [Android Issue](https://issuetracker.google.com/issues/253292081) in Jetpack Compose where URLAnnotation is read correctly by Talkback, but the onClick lambda is not called.
 
 Steps to Reproduce:
 1. Turn on Talkback in Accessibility settings
